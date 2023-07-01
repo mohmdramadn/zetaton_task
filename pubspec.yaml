@@ -71,6 +71,12 @@ flutter:
     - family: Nexa
       fonts:
         - asset: assets/fonts/Nexa/Nexa_Light.otf
+    - family: NexaBold
+      fonts:
+        - asset: assets/fonts/Nexa/Nexa_bold.otf
+    - family: NexaRegular
+      fonts:
+        - asset: assets/fonts/Nexa/Nexa_regular.otf
 
   # To add assets to your application, add an assets section, like this:
   # assets:

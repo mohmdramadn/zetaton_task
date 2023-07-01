@@ -34,6 +34,8 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: const _RegisterButton(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
@@ -52,14 +54,45 @@ class _Body extends StatelessWidget {
   }
 }
 
+class _RegisterButton extends StatelessWidget {
+  const _RegisterButton();
+
+  @override
+  Widget build(BuildContext context) {
+    var isEnabled =
+    context.select((RegisterViewModel vm) => vm.isButtonEnabled);
+    var isLoading = context.select((RegisterViewModel vm) => vm.isLoading);
+
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.0.w,vertical: 8.h),
+        child: AppButton(
+          onPressed: !isEnabled
+              ? null
+              : () =>
+                  context.read<RegisterViewModel>().onRegisterSelectedAction(),
+          child: isLoading
+              ? SizedBox(
+                  height: 15.h,
+                  width: 15.w,
+                  child: const CircularProgressIndicator(
+                    color: Colors.white,
+                  ),
+                )
+              : Text(Constant.titles.register),
+        ),
+      ),
+    );
+  }
+}
+
 class _UserDetailsFields extends StatelessWidget {
   const _UserDetailsFields();
 
   @override
   Widget build(BuildContext context) {
-    var isEnabled =
-        context.select((RegisterViewModel vm) => vm.isButtonEnabled);
-    var isLoading = context.select((RegisterViewModel vm) => vm.isLoading);
+
     var emailController =
         context.select((RegisterViewModel vm) => vm.emailController);
     var passwordController =
@@ -153,23 +186,7 @@ class _UserDetailsFields extends StatelessWidget {
               return null;
             },
           ),
-          SizedBox(height: 16.0.h),
-          AppButton(
-            onPressed: !isEnabled
-                ? null
-                : () => context
-                    .read<RegisterViewModel>()
-                    .onRegisterSelectedAction(),
-            child: isLoading
-                ? SizedBox(
-                    height: 15.h,
-                    width: 15.w,
-                    child: const CircularProgressIndicator(
-                      color: Colors.white,
-                    ),
-                  )
-                : Text(Constant.titles.register),
-          ),
+          SizedBox(height: 30.0.h),
         ],
       ),
     );
@@ -185,10 +202,7 @@ class _Header extends StatelessWidget {
       padding: const EdgeInsets.only(top: 30.0, right: 8.0, left: 8.0),
       child: Text(
         Constant.titles.register,
-        style: TextStyle(
-          fontSize: 30.spMin,
-          color: Theme.of(context).primaryColorDark,
-        ),
+        style: Theme.of(context).textTheme.headlineLarge,
       ),
     );
   }
@@ -200,13 +214,10 @@ class _SubHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
+      padding: EdgeInsets.symmetric(vertical: 16.0.h, horizontal: 8.0.w),
       child: Text(
         Constant.titles.registerSubHeader,
-        style: TextStyle(
-          fontSize: 16.spMin,
-          color: Theme.of(context).colorScheme.secondary,
-        ),
+        style: Theme.of(context).textTheme.bodyMedium,
       ),
     );
   }
@@ -231,14 +242,23 @@ class _Field extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
       ),
-      child: TextFormField(
-        controller: controller,
-        decoration: InputDecoration(
-          labelText: labelText,
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
-        ),
-        obscureText: obscureText,
-        validator: validator,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0.w),
+            child: Text(labelText,style: Theme.of(context).textTheme.bodySmall),
+          ),
+          SizedBox(height: 8.h,),
+          TextFormField(
+            controller: controller,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
+            ),
+            obscureText: obscureText,
+            validator: validator,
+          ),
+        ],
       ),
     );
   }

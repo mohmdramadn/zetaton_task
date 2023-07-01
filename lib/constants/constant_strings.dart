@@ -10,6 +10,7 @@ class Constant {
       const ReEnterPasswordValidationStatus();
   static EmailValidationStatus emailValidationStatus =
       const EmailValidationStatus();
+  static Fonts fonts = const Fonts();
 }
 
 class Titles{
@@ -58,6 +59,13 @@ class ReEnterPasswordValidationStatus {
   String get isEmpty => 'Please re-enter your password';
   String get isNotMatching => 'Passwords doesn\'t match';
   String get isValid => 'Valid';
+}
+
+class Fonts{
+  const Fonts();
+  String get nexa => 'Nexa';
+  String get nexaBold => 'NexaBold';
+  String get nexaRegular => 'NexaRegular';
 }
 
 class Url{}
