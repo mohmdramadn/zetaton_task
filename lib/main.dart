@@ -35,11 +35,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           debugShowMaterialGrid: false,
           title: 'Wallpaper Gallery',
-          theme: ThemeData(
-            colorScheme: lightColorScheme,
-            textSelectionTheme:
-            const TextSelectionThemeData(cursorColor: Colors.white),
-          ),
+          theme: appThemeData,
           onGenerateRoute: onGenerateRoute,
           initialRoute: Routes.registerRoute,
           opaqueRoute: Get.isOpaqueRouteDefault,

@@ -1,4 +1,93 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:zetaton_task/constants/constant_strings.dart';
+
+final appThemeData = ThemeData(
+  fontFamily: Constant.fonts.nexa,
+  colorScheme: lightColorScheme,
+  primaryColor: lightColorScheme.primary,
+  primaryColorLight: lightColorScheme.primaryContainer,
+  textTheme: TextTheme(
+    displayMedium: TextStyle(
+      color: lightColorScheme.primary,
+      fontWeight: FontWeight.w600,
+    ),
+    displaySmall: TextStyle(
+      color: lightColorScheme.primary,
+      fontWeight: FontWeight.bold,
+      fontSize: 26.sp,
+    ),
+    headlineLarge: TextStyle(
+      fontFamily: Constant.fonts.nexaBold,
+      color: lightColorScheme.primary,
+      fontSize: 24.sp,
+      fontWeight: FontWeight.w700,
+    ),
+    headlineSmall: TextStyle(
+        fontSize: 20.sp,
+        fontWeight: FontWeight.w500),
+    headlineMedium: TextStyle(
+      fontSize: 22.sp,
+    ),
+    titleLarge: TextStyle(
+      fontSize: 20.sp,
+    ),
+    titleMedium: TextStyle(
+      fontSize: 20.0.sp,
+      letterSpacing: 1.3,
+      wordSpacing: 1.3,
+      height: 2,
+    ),
+    titleSmall: TextStyle(
+      fontSize: 18.0.sp,
+      wordSpacing: 1.3,
+      height: 2,
+    ),
+    bodyLarge: TextStyle(
+      fontSize: 20.sp,
+      fontWeight: FontWeight.w500,
+    ),
+    bodyMedium: TextStyle(
+      fontSize: 18.sp,
+      fontWeight: FontWeight.w500,
+    ),
+    bodySmall: TextStyle(
+      fontSize: 14.sp,
+      fontWeight: FontWeight.w500,
+    ),
+    labelLarge: TextStyle(fontSize: 18.sp),
+  ),
+  inputDecorationTheme: InputDecorationTheme(
+    hintStyle: TextStyle(
+      letterSpacing: 3.0,
+      fontSize: 18.sp,
+    ),
+    border: OutlineInputBorder(
+      borderSide: BorderSide.none,
+      borderRadius: BorderRadius.circular(12.0),
+    ),
+    errorStyle: const TextStyle(
+      fontWeight: FontWeight.w500,
+    ),
+    errorBorder: OutlineInputBorder(
+      borderSide: const BorderSide(
+        style: BorderStyle.solid,
+        width: 2,
+      ),
+      borderRadius: BorderRadius.circular(12.0),
+    ),
+    contentPadding: EdgeInsets.symmetric(horizontal: 8.0.h, vertical: 4.0.h),
+    alignLabelWithHint: true,
+    isDense: true,
+    isCollapsed: true,
+    filled: true,
+    fillColor: Colors.white,
+  ),
+  disabledColor: Colors.grey,
+  dividerColor: lightColorScheme.primary,
+  visualDensity: VisualDensity.adaptivePlatformDensity,
+);
 
 const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
