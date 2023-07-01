@@ -60,29 +60,24 @@ final appThemeData = ThemeData(
   ),
   inputDecorationTheme: InputDecorationTheme(
     hintStyle: TextStyle(
-      letterSpacing: 3.0,
       fontSize: 18.sp,
-    ),
-    border: OutlineInputBorder(
-      borderSide: BorderSide.none,
-      borderRadius: BorderRadius.circular(12.0),
     ),
     errorStyle: const TextStyle(
       fontWeight: FontWeight.w500,
     ),
     errorBorder: OutlineInputBorder(
-      borderSide: const BorderSide(
-        style: BorderStyle.solid,
+      borderSide: BorderSide(
+        color: lightColorScheme.error,
         width: 2,
       ),
-      borderRadius: BorderRadius.circular(12.0),
+      borderRadius: BorderRadius.circular(25.0),
     ),
-    contentPadding: EdgeInsets.symmetric(horizontal: 8.0.h, vertical: 4.0.h),
+    contentPadding: EdgeInsets.symmetric(horizontal: 16.0.h, vertical: 4.0.h),
     alignLabelWithHint: true,
     isDense: true,
     isCollapsed: true,
     filled: true,
-    fillColor: Colors.white,
+    fillColor: Colors.grey.withOpacity(0.1),
   ),
   disabledColor: Colors.grey,
   dividerColor: lightColorScheme.primary,

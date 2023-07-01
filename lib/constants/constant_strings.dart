@@ -17,6 +17,7 @@ class Titles{
   const Titles();
   //registration
    String get register => 'Register';
+   String get login => 'Login';
    String get email => 'Email';
    String get enterEmail => 'Please enter your email';
    String get password => 'Password';
@@ -30,6 +31,7 @@ class Titles{
    String get phoneNumber => 'Phone Number';
    String get enterPhoneNumber => 'Please enter your phone number';
    String get registerSubHeader => 'Enter your data to create a new account';
+   String get loginSubHeader => 'To have access to wonderful wallpapers';
    String get notConnected => 'You are offline';
    String get firstNameEmpty => 'First name can not be empty';
    String get lastNameEmpty => 'Last name can not be empty';
