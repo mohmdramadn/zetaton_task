@@ -7,14 +7,9 @@ import 'package:zetaton_task/constants/constant_strings.dart';
 import 'package:zetaton_task/main.dart';
 import 'package:zetaton_task/screens/register/register_view_model.dart';
 
-class RegisterScreen extends StatefulWidget {
+class RegisterScreen extends StatelessWidget {
   const RegisterScreen({Key? key}) : super(key: key);
 
-  @override
-  _RegisterScreenState createState() => _RegisterScreenState();
-}
-
-class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<RegisterViewModel>.value(

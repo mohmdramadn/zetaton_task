@@ -7,14 +7,9 @@ import 'package:zetaton_task/constants/constant_strings.dart';
 import 'package:zetaton_task/main.dart';
 import 'package:zetaton_task/screens/login/login_view_model.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
-  @override
-  _LoginScreenState createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<LoginViewModel>.value(
