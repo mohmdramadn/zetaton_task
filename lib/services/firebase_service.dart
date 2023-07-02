@@ -1,11 +1,11 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:async/async.dart';
-import 'package:flutter/widgets.dart';
+import 'package:injectable/injectable.dart';
 import 'package:zetaton_task/contract/services/i_firebase_service.dart';
 
-
-class FirebaseService extends ChangeNotifier implements IFirebaseService{
+@Singleton(as: IFirebaseService)
+class FirebaseService implements IFirebaseService{
   final firebaseAuth = FirebaseAuth.instance;
   User? user;
 

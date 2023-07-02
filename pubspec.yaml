@@ -45,8 +45,12 @@ dependencies:
   flutter_screenutil: ^5.8.4
   internet_connection_checker: 1.0.0+1
   fluttertoast: ^8.2.1
+  get_it: ^7.6.0
+  injectable: ^2.1.2
 
 dev_dependencies:
+  injectable_generator: ^2.1.6
+  build_runner: ^2.4.6
   flutter_test:
     sdk: flutter
 

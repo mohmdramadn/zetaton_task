@@ -4,9 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:zetaton_task/components/app_button.dart';
 import 'package:zetaton_task/components/app_fields.dart';
 import 'package:zetaton_task/constants/constant_strings.dart';
-import 'package:zetaton_task/contract/services/i_connection_service.dart';
-import 'package:zetaton_task/contract/services/i_firebase_service.dart';
-import 'package:zetaton_task/contract/services/i_message_service.dart';
+import 'package:zetaton_task/main.dart';
 import 'package:zetaton_task/screens/register/register_view_model.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -19,12 +17,8 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<RegisterViewModel>(
-        create: (_) => RegisterViewModel(
-              connectionService: context.read<IConnectionService>(),
-              messageService: context.read<IMessageService>(),
-              firebaseService: context.read<IFirebaseService>(),
-            ),
+    return ChangeNotifierProvider<RegisterViewModel>.value(
+        value: getIt<RegisterViewModel>(),
         child: const _Body());
   }
 }

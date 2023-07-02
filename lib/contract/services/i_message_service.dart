@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
-
-abstract class IMessageService with ChangeNotifier {
+abstract class IMessageService {
   void showSuccessSnackBar(String? title, String? message);
 
   void showErrorSnackBar(String? title, String? message);
