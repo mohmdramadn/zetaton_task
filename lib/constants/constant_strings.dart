@@ -1,5 +1,5 @@
 class Constant {
-  static Url urls = Url();
+  static Url urls = const Url();
   static SharedPrefsKeys prefsKeys = SharedPrefsKeys();
   static Titles titles = const Titles();
   static PhoneValidationStatus phoneValidationStatus =
@@ -11,13 +11,14 @@ class Constant {
   static EmailValidationStatus emailValidationStatus =
       const EmailValidationStatus();
   static Fonts fonts = const Fonts();
+  static Pexels pexels = const Pexels();
 }
 
 class Titles{
   const Titles();
-  //registration
    String get register => 'Register';
    String get login => 'Login';
+   String get home => 'Home';
    String get email => 'Email';
    String get enterEmail => 'Please enter your email';
    String get password => 'Password';
@@ -70,5 +71,14 @@ class Fonts{
   String get nexaRegular => 'NexaRegular';
 }
 
-class Url{}
+class Url{
+  const Url();
+  final String _baseUrl = 'https://api.pexels.com/v1';
+  String get photosApi => '$_baseUrl/curated?per_page=';
+}
+
+class Pexels{
+  const Pexels();
+  String get key => 'hCdsfNYxJ0lrMWVd9MYMrIkXleNOdd0KLAX0C3LGAmEbUs2JCVql5vTP';
+}
 class SharedPrefsKeys{}
