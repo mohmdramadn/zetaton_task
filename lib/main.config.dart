@@ -12,14 +12,19 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
+import 'contract/remote/i_home_repository.dart' as _i13;
 import 'contract/services/i_connection_service.dart' as _i3;
 import 'contract/services/i_firebase_service.dart' as _i5;
 import 'contract/services/i_message_service.dart' as _i7;
-import 'screens/login/login_view_model.dart' as _i9;
-import 'screens/register/register_view_model.dart' as _i10;
+import 'contract/services/i_request_service.dart' as _i9;
+import 'repositories/home_repository.dart' as _i14;
+import 'screens/home/home_view_model.dart' as _i15;
+import 'screens/login/login_view_model.dart' as _i11;
+import 'screens/register/register_view_model.dart' as _i12;
 import 'services/connection_service.dart' as _i4;
 import 'services/firebase_service.dart' as _i6;
 import 'services/message_service.dart' as _i8;
+import 'services/request_service.dart' as _i10;
 
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
@@ -37,14 +42,22 @@ _i1.GetIt $initGetIt(
   gh.singleton<_i3.IConnectionService>(_i4.ConnectionService());
   gh.singleton<_i5.IFirebaseService>(_i6.FirebaseService());
   gh.singleton<_i7.IMessageService>(_i8.MessageService());
-  gh.factory<_i9.LoginViewModel>(() => _i9.LoginViewModel(
+  gh.singleton<_i9.IRequestService>(_i10.RequestService());
+  gh.factory<_i11.LoginViewModel>(() => _i11.LoginViewModel(
         connectionService: gh<_i3.IConnectionService>(),
         firebaseService: gh<_i5.IFirebaseService>(),
         messageService: gh<_i7.IMessageService>(),
       ));
-  gh.factory<_i10.RegisterViewModel>(() => _i10.RegisterViewModel(
+  gh.factory<_i12.RegisterViewModel>(() => _i12.RegisterViewModel(
         connectionService: gh<_i3.IConnectionService>(),
         firebaseService: gh<_i5.IFirebaseService>(),
+        messageService: gh<_i7.IMessageService>(),
+      ));
+  gh.factory<_i13.IHomeRepository>(
+      () => _i14.HomeRepository(requestService: gh<_i9.IRequestService>()));
+  gh.factory<_i15.HomeViewModel>(() => _i15.HomeViewModel(
+        homeRepository: gh<_i13.IHomeRepository>(),
+        connectionService: gh<_i3.IConnectionService>(),
         messageService: gh<_i7.IMessageService>(),
       ));
   return getIt;
