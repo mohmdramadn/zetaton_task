@@ -1,5 +1,5 @@
 class Constant {
-  static Url urls = Url();
+  static Url urls = const Url();
   static SharedPrefsKeys prefsKeys = SharedPrefsKeys();
   static Titles titles = const Titles();
   static PhoneValidationStatus phoneValidationStatus =
@@ -16,9 +16,9 @@ class Constant {
 
 class Titles{
   const Titles();
-  //registration
    String get register => 'Register';
    String get login => 'Login';
+   String get home => 'Home';
    String get email => 'Email';
    String get enterEmail => 'Please enter your email';
    String get password => 'Password';
