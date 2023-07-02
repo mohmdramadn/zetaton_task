@@ -11,6 +11,7 @@ class Constant {
   static EmailValidationStatus emailValidationStatus =
       const EmailValidationStatus();
   static Fonts fonts = const Fonts();
+  static Pexels pexels = const Pexels();
 }
 
 class Titles{
@@ -70,5 +71,14 @@ class Fonts{
   String get nexaRegular => 'NexaRegular';
 }
 
-class Url{}
+class Url{
+  const Url();
+  final String _baseUrl = 'https://api.pexels.com/v1';
+  String get photosApi => '$_baseUrl/curated?per_page=';
+}
+
+class Pexels{
+  const Pexels();
+  String get key => 'hCdsfNYxJ0lrMWVd9MYMrIkXleNOdd0KLAX0C3LGAmEbUs2JCVql5vTP';
+}
 class SharedPrefsKeys{}
