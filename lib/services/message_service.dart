@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:injectable/injectable.dart';
 import 'package:zetaton_task/contract/services/i_message_service.dart';
 
-class MessageService extends ChangeNotifier implements IMessageService{
+@Singleton(as: IMessageService)
+class MessageService implements IMessageService{
   @override
   void showSuccessSnackBar(String? title, String? message) {
     Get.snackbar(

@@ -4,9 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:zetaton_task/components/app_button.dart';
 import 'package:zetaton_task/components/app_fields.dart';
 import 'package:zetaton_task/constants/constant_strings.dart';
-import 'package:zetaton_task/contract/services/i_connection_service.dart';
-import 'package:zetaton_task/contract/services/i_firebase_service.dart';
-import 'package:zetaton_task/contract/services/i_message_service.dart';
+import 'package:zetaton_task/main.dart';
 import 'package:zetaton_task/screens/login/login_view_model.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -19,12 +17,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<LoginViewModel>(
-        create: (_) => LoginViewModel(
-              connectionService: context.read<IConnectionService>(),
-              messageService: context.read<IMessageService>(),
-              firebaseService: context.read<IFirebaseService>(),
-            ),
+    return ChangeNotifierProvider<LoginViewModel>.value(
+        value: getIt<LoginViewModel>(),
         child: const _Body());
   }
 }
