@@ -44,6 +44,9 @@ class Titles{
    String get error => 'Something happened try again later';
    String get haveAccount => 'Do you have an account ? ';
    String get doesNotHaveAccount => 'Do not have an account ? ';
+   String get sureLogout => 'Are you sure you want to logout ?';
+   String get logout => 'Logout';
+   String get cancel => 'Cancel';
 }
 
 class PhoneValidationStatus{
