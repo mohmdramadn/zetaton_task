@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:async/async.dart';
 
@@ -13,6 +14,8 @@ abstract class IFirebaseService {
   Future<Result<bool>> updateFavoritesAsync({required List<String> photos});
 
   Future<void> updateUserDisplayName(String fullName);
+
+  Future<Result<QuerySnapshot<Map<String, dynamic>>>> getFavoritePhotos();
 
   Future<Result<bool>> logoutAsync();
 

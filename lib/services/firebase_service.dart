@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:async/async.dart';
 import 'package:injectable/injectable.dart';
+import 'package:zetaton_task/constants/constant_strings.dart';
 import 'package:zetaton_task/contract/services/i_firebase_service.dart';
 
 @Singleton(as: IFirebaseService)
@@ -68,12 +69,12 @@ class FirebaseService implements IFirebaseService{
   @override
   Future<Result<String>> createProfileAsync({required String fullName}) async {
     final newUser = <String, dynamic>{
-      'uid': user?.uid,
-      'Full name': fullName,
-      'Favorites': []
+      Constant.firebaseQueryParam.uid: user?.uid,
+      Constant.firebaseQueryParam.fullName: fullName,
+      Constant.firebaseQueryParam.favorites: []
     };
     try {
-      await database.collection('users').doc(user?.uid).set(newUser);
+      await database.collection(Constant.firebaseQueryParam.users).doc(user?.uid).set(newUser);
       await addNewUserNameAsync(displayName: fullName);
       return Result.value(user!.uid);
     } catch (e) {
@@ -86,10 +87,24 @@ class FirebaseService implements IFirebaseService{
       {required List<String> photos}) async {
     try {
       await database
-          .collection('users')
+          .collection(Constant.firebaseQueryParam.users)
           .doc(user?.uid)
-          .update({'Favorites': FieldValue.arrayUnion(photos)});
+          .update({Constant.firebaseQueryParam.favorites: FieldValue.arrayUnion(photos)});
       return Result.value(true);
+    } catch (e) {
+      return Result.error(e);
+    }
+  }
+
+  @override
+  Future<Result<QuerySnapshot<Map<String, dynamic>>>> getFavoritePhotos() async {
+    try {
+      var response = await database
+          .collection(Constant.firebaseQueryParam.users)
+          .where(Constant.firebaseQueryParam.uid, isEqualTo: user?.uid)
+          .get();
+
+      return Result.value(response);
     } catch (e) {
       return Result.error(e);
     }
