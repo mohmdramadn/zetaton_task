@@ -80,8 +80,8 @@ class RegisterViewModel extends ChangeNotifier {
     Get.offAndToNamed(Routes.loginRoute);
   }
 
-  String validatePhone(String phone) {
-    var phoneValidationResult = Validator.isValidPhone(phone);
+  String validatePhone() {
+    var phoneValidationResult = Validator.isValidPhone(phoneController.text);
     if (phoneValidationResult == Constant.phoneValidationStatus.isEmpty) {
       return Constant.phoneValidationStatus.isEmpty;
     }
