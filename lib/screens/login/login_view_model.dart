@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
 import 'package:zetaton_task/constants/constant_strings.dart';
 import 'package:zetaton_task/contract/services/i_connection_service.dart';
 import 'package:zetaton_task/contract/services/i_firebase_service.dart';
 import 'package:zetaton_task/contract/services/i_message_service.dart';
 import 'package:zetaton_task/helper/validator.dart';
+import 'package:zetaton_task/routes/routes_names.dart';
 
 @injectable
 class LoginViewModel extends ChangeNotifier {
@@ -67,6 +69,11 @@ class LoginViewModel extends ChangeNotifier {
     }
     setLoadingState(false);
     notifyListeners();
+    Get.offAndToNamed(Routes.homeRoute);
+  }
+
+  void navigateToRegister(){
+    Get.toNamed(Routes.registerRoute);
   }
 
   String validateEmail(String email) {
