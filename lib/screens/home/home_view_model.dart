@@ -76,8 +76,8 @@ class HomeViewModel extends ChangeNotifier {
     Get.toNamed(Routes.photoDetailsRoute, arguments: photo);
   }
 
-  void navigateToFavoritesScreenAction() {
-    Get.toNamed(Routes.favoritesRoute);
+  void navigateAction(String route) {
+    Get.toNamed(route);
   }
 
   Future<void> _getFavoriteWallpapers() async {

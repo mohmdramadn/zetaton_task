@@ -35,18 +35,16 @@ class _BodyState extends State<_Body> {
     var isLoading = context.select((FavoritesViewModel home) => home.isLoading);
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(
-                  top: 30.h, bottom: 8.h, left: 16.w, right: 16.w),
-              child: const _Header(),
-            ),
-            isLoading ? const _LoadingGrid() : const _Photos(),
-          ],
-        ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(
+                top: 30.h, bottom: 8.h, left: 16.w, right: 16.w),
+            child: const _Header(),
+          ),
+          isLoading ? const _LoadingGrid() : const _Photos(),
+        ],
       ),
     );
   }
@@ -101,30 +99,32 @@ class _LoadingGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-      child: Padding(
-        padding: const EdgeInsets.all(18.0),
-        child: GridView.builder(
-          itemCount: 9,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 20.0.h,
-            mainAxisSpacing: 20.0.w,
-          ),
-          itemBuilder: (context, int index) {
-            return SkeletonItem(
-              child: SkeletonItem(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: Colors.grey,
+    return Expanded(
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: GridView.builder(
+            itemCount: 9,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 20.0.h,
+              mainAxisSpacing: 20.0.w,
+            ),
+            itemBuilder: (context, int index) {
+              return SkeletonItem(
+                child: SkeletonItem(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: Colors.grey,
+                    ),
                   ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );
@@ -138,21 +138,23 @@ class _Photos extends StatelessWidget {
   Widget build(BuildContext context) {
     var photos = context.select((FavoritesViewModel home) => home.photos);
 
-    return SizedBox(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-      child: Padding(
-        padding: const EdgeInsets.all(18.0),
-        child: GridView.builder(
-          itemCount: photos.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 20.0.h,
-            mainAxisSpacing: 20.0.w,
+    return Expanded(
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: GridView.builder(
+            itemCount: photos.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 20.0.h,
+              mainAxisSpacing: 20.0.w,
+            ),
+            itemBuilder: (context, int index) {
+              return _Image(index: index);
+            },
           ),
-          itemBuilder: (context, int index) {
-            return _Image(index: index);
-          },
         ),
       ),
     );

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:skeletons/skeletons.dart';
 import 'package:zetaton_task/constants/constant_strings.dart';
 import 'package:zetaton_task/main.dart';
+import 'package:zetaton_task/routes/routes_names.dart';
 import 'package:zetaton_task/screens/home/home_view_model.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -92,7 +93,8 @@ class _SearchButton extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: 19.h),
       child: InkWell(
-        onTap: () {},
+        onTap: () =>
+            context.read<HomeViewModel>().navigateAction(Routes.searchRoute),
         child: Icon(
           Icons.search,
           size: 30.sp,
@@ -112,7 +114,7 @@ class _FavoriteButton extends StatelessWidget {
       child: InkWell(
         onTap: () => context
             .read<HomeViewModel>()
-            .navigateToFavoritesScreenAction(),
+            .navigateAction(Routes.favoritesRoute),
         child: Icon(
           Icons.favorite,
           size: 30.sp,
@@ -127,30 +129,32 @@ class _LoadingGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-      child: Padding(
-        padding: const EdgeInsets.all(18.0),
-        child: GridView.builder(
-          itemCount: 9,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 20.0.h,
-            mainAxisSpacing: 20.0.w,
-          ),
-          itemBuilder: (context, int index) {
-            return SkeletonItem(
-              child: SkeletonItem(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: Colors.grey,
+    return Expanded(
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: GridView.builder(
+            itemCount: 9,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 20.0.h,
+              mainAxisSpacing: 20.0.w,
+            ),
+            itemBuilder: (context, int index) {
+              return SkeletonItem(
+                child: SkeletonItem(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: Colors.grey,
+                    ),
                   ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );
@@ -164,21 +168,23 @@ class _Photos extends StatelessWidget {
   Widget build(BuildContext context) {
     var photos = context.select((HomeViewModel home) => home.photos);
 
-    return SizedBox(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-      child: Padding(
-        padding: const EdgeInsets.all(18.0),
-        child: GridView.builder(
-          itemCount: photos.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 20.0.h,
-            mainAxisSpacing: 20.0.w,
+    return Expanded(
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: GridView.builder(
+            itemCount: photos.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 20.0.h,
+              mainAxisSpacing: 20.0.w,
+            ),
+            itemBuilder: (context, int index) {
+              return _Image(index: index);
+            },
           ),
-          itemBuilder: (context, int index) {
-            return _Image(index: index);
-          },
         ),
       ),
     );
