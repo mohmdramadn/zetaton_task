@@ -50,6 +50,8 @@ dependencies:
   fluttertoast: ^8.2.1
   get_it: ^7.6.0
   injectable: ^2.1.2
+  gallery_saver: ^2.3.2
+  cloud_firestore: ^4.8.2
 
 dev_dependencies:
   injectable_generator: ^2.1.6
