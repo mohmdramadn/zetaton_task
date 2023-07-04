@@ -28,8 +28,7 @@ class Validator {
   }
 
   static String isValidPhone(String? phone) {
-    String pattern =
-        r'^(?:\+?1[-.●]?)?\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$';
+    String pattern = r'^1\d{10}$';
 
     if (phone!.isEmpty) {
       return Constant.phoneValidationStatus.isEmpty;

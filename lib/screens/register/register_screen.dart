@@ -196,10 +196,9 @@ class _UserDetailsFields extends StatelessWidget {
             controller: phoneController,
             labelText: Constant.titles.phoneNumber,
             validator: (value) {
-              if (value!.isEmpty) {
-                return Constant.titles.enterPhoneNumber;
-              }
-              // You can add additional validation logic here
+              var validationState =
+              context.read<RegisterViewModel>().validatePhone();
+              if (validationState != "") return validationState;
               return null;
             },
           ),
