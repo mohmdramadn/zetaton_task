@@ -33,47 +33,88 @@ class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
     var isLoading = context.select((HomeViewModel home) => home.isLoading);
-    var photos = context.select((HomeViewModel home) => home.photos);
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(
-                  top: 30.h, bottom: 8.h, left: 16.w, right: 16.w),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const _Header(),
-                  Padding(
-                    padding: EdgeInsets.only(top:19.h),
-                    child: Icon(Icons.search,size: 30.sp),
-                  ),
-                ],
-              ),
+      body: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(
+                top: 30.h, bottom: 8.h, left: 16.w, right: 16.w),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const _Header(),
+                Padding(
+                  padding: EdgeInsets.only(top: 19.h),
+                  child: Icon(Icons.search, size: 30.sp),
+                ),
+              ],
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: GridView.builder(
-                  itemCount: isLoading ? 9 : photos.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 20.0.h,
-                    mainAxisSpacing: 20.0.w,
+          ),
+          isLoading ? const _LoadingGrid() : const _Photos(),
+        ],
+      ),
+    );
+  }
+}
+
+class _LoadingGrid extends StatelessWidget {
+  const _LoadingGrid({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      child: Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: GridView.builder(
+          itemCount: 9,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 20.0.h,
+            mainAxisSpacing: 20.0.w,
+          ),
+          itemBuilder: (context, int index) {
+            return SkeletonItem(
+              child: SkeletonItem(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: Colors.grey,
                   ),
-                  itemBuilder: (BuildContext context, int index) {
-                    return isLoading
-                        ? const _LoadingImageIndicator()
-                        : _Image(index: index);
-                  },
                 ),
               ),
-            ),
-          ],
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class _Photos extends StatelessWidget {
+  const _Photos({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var photos = context.select((HomeViewModel home) => home.photos);
+
+    return SizedBox(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      child: Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: GridView.builder(
+          itemCount: photos.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 20.0.h,
+            mainAxisSpacing: 20.0.w,
+          ),
+          itemBuilder: (context, int index) {
+            return _Image(index: index);
+          },
         ),
       ),
     );
@@ -95,23 +136,6 @@ class _Header extends StatelessWidget {
   }
 }
 
-class _LoadingImageIndicator extends StatelessWidget {
-  const _LoadingImageIndicator();
-
-  @override
-  Widget build(BuildContext context) {
-    return SkeletonItem(
-        child: SkeletonItem(
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            color: Colors.grey,
-          ),
-        ),
-      ));
-  }
-}
-
 class _Image extends StatelessWidget {
   const _Image({
     required this.index,
@@ -123,7 +147,11 @@ class _Image extends StatelessWidget {
   Widget build(BuildContext context) {
     var photos = context.select((HomeViewModel home) => home.photos);
 
-    return Container(
+    return InkWell(
+      onTap: () => context
+          .read<HomeViewModel>()
+          .navigateToDetailsScreenAction(photos[index]),
+      child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
         ),
@@ -134,6 +162,7 @@ class _Image extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-      );
+      ),
+    );
   }
 }
