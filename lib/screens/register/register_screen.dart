@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -24,8 +25,6 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: const _RegisterButton(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
@@ -36,8 +35,36 @@ class _Body extends StatelessWidget {
               SizedBox(height: 4.0.h),
               const _SubHeader(),
               const _UserDetailsFields(),
+              const _RegisterButton(),
+              SizedBox(height: 4.0.h),
+              const _Login()
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _Login extends StatelessWidget {
+  const _Login();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text.rich(
+        TextSpan(
+          children: [
+            TextSpan(text: Constant.titles.haveAccount),
+            TextSpan(
+              text: Constant.titles.login,
+              style: TextStyle(fontFamily: Constant.fonts.nexaBold),
+              recognizer: TapGestureRecognizer()
+                ..onTap =
+                    () => context.read<RegisterViewModel>().navigateToLogin(),
+            ),
+          ],
         ),
       ),
     );
@@ -56,7 +83,7 @@ class _RegisterButton extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.0.w,vertical: 8.h),
+        padding: EdgeInsets.symmetric(vertical: 8.h),
         child: AppButton(
           onPressed: !isEnabled
               ? null
