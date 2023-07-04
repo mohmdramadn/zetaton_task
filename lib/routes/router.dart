@@ -6,6 +6,7 @@ import 'package:zetaton_task/screens/home/home_screen.dart';
 import 'package:zetaton_task/screens/login/login_screen.dart';
 import 'package:zetaton_task/screens/photo_details/photo_details_screen.dart';
 import 'package:zetaton_task/screens/register/register_screen.dart';
+import 'package:zetaton_task/screens/search/search_screen.dart';
 import 'package:zetaton_task/screens/splash/splash_screen.dart';
 
 Route onGenerateRoute(RouteSettings settings) {
@@ -36,6 +37,10 @@ Route onGenerateRoute(RouteSettings settings) {
     case Routes.splashRoute:
       return MaterialPageRoute(
           builder: (context) => const SplashScreen(), settings: settings);
+
+    case Routes.searchRoute:
+      return MaterialPageRoute(
+          builder: (context) => const SearchScreen(), settings: settings);
 
     default:
       return MaterialPageRoute(builder: (context) => const RegisterScreen());

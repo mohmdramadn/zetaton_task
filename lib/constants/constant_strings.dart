@@ -47,6 +47,8 @@ class Titles{
    String get sureLogout => 'Are you sure you want to logout ?';
    String get logout => 'Logout';
    String get cancel => 'Cancel';
+   String get search => 'Search';
+   String get wallpaper => 'Wallpaper';
 }
 
 class PhoneValidationStatus{
@@ -86,6 +88,7 @@ class Url{
   const Url();
   final String _baseUrl = 'https://api.pexels.com/v1';
   String get photosApi => '$_baseUrl/curated?per_page=';
+  String get searchApi => '$_baseUrl/search?query=';
 }
 
 class Pexels{
