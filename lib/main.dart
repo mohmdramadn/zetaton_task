@@ -28,6 +28,8 @@ void main() async{
 
   configureDependencies();
 
+  Preference.instance.initSharedPreference();
+
   runApp(const MyApp());
 }
 

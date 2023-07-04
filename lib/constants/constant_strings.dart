@@ -13,6 +13,7 @@ class Constant {
   static Fonts fonts = const Fonts();
   static Pexels pexels = const Pexels();
   static FirebaseQuery firebaseQueryParam = const FirebaseQuery();
+  static SharedPrefsKeys sharedPrefKeys = const SharedPrefsKeys();
 }
 
 class Titles{
@@ -98,4 +99,7 @@ class FirebaseQuery {
   String get fullName => 'Full name';
 }
 
-class SharedPrefsKeys{}
+class SharedPrefsKeys{
+  const SharedPrefsKeys();
+  String get user => 'user';
+}
