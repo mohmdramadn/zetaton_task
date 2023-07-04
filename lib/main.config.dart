@@ -12,18 +12,19 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import 'contract/remote/i_home_repository.dart' as _i17;
+import 'contract/remote/i_home_repository.dart' as _i18;
 import 'contract/services/i_connection_service.dart' as _i4;
 import 'contract/services/i_firebase_service.dart' as _i6;
 import 'contract/services/i_message_service.dart' as _i8;
 import 'contract/services/i_request_service.dart' as _i10;
 import 'models/photos.dart' as _i14;
-import 'repositories/home_repository.dart' as _i18;
-import 'screens/favorites/favorites_view_model.dart' as _i16;
-import 'screens/home/home_view_model.dart' as _i19;
+import 'repositories/home_repository.dart' as _i19;
+import 'screens/favorites/favorites_view_model.dart' as _i17;
+import 'screens/home/home_view_model.dart' as _i20;
 import 'screens/login/login_view_model.dart' as _i12;
 import 'screens/photo_details/photo_details_view_model.dart' as _i13;
 import 'screens/register/register_view_model.dart' as _i15;
+import 'screens/splash/splash_view_model.dart' as _i16;
 import 'services/connection_service.dart' as _i5;
 import 'services/favorites_service.dart' as _i3;
 import 'services/firebase_service.dart' as _i7;
@@ -65,15 +66,17 @@ _i1.GetIt $initGetIt(
         firebaseService: gh<_i6.IFirebaseService>(),
         messageService: gh<_i8.IMessageService>(),
       ));
-  gh.factory<_i16.FavoritesViewModel>(() => _i16.FavoritesViewModel(
+  gh.factory<_i16.SplashViewModel>(
+      () => _i16.SplashViewModel(firebaseService: gh<_i6.IFirebaseService>()));
+  gh.factory<_i17.FavoritesViewModel>(() => _i17.FavoritesViewModel(
         favDataService: gh<_i3.FavoritesDataService>(),
         firebaseService: gh<_i6.IFirebaseService>(),
         connectionService: gh<_i4.IConnectionService>(),
       ));
-  gh.factory<_i17.IHomeRepository>(
-      () => _i18.HomeRepository(requestService: gh<_i10.IRequestService>()));
-  gh.factory<_i19.HomeViewModel>(() => _i19.HomeViewModel(
-        homeRepository: gh<_i17.IHomeRepository>(),
+  gh.factory<_i18.IHomeRepository>(
+      () => _i19.HomeRepository(requestService: gh<_i10.IRequestService>()));
+  gh.factory<_i20.HomeViewModel>(() => _i20.HomeViewModel(
+        homeRepository: gh<_i18.IHomeRepository>(),
         connectionService: gh<_i4.IConnectionService>(),
         messageService: gh<_i8.IMessageService>(),
         firebaseService: gh<_i6.IFirebaseService>(),

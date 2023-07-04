@@ -4,4 +4,5 @@ class Routes{
   static const String homeRoute = 'home';
   static const String photoDetailsRoute = 'photoDetails';
   static const String favoritesRoute = 'favorites';
+  static const String splashRoute = 'splash';
 }

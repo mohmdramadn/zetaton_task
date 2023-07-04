@@ -57,7 +57,10 @@ class MessageService implements IMessageService{
           return AlertDialog(
             backgroundColor: Colors.white,
             title: Text(title ?? ""),
-            content: Text(message,style: const TextStyle(color: Colors.white)),
+            content: Text(
+              message,
+              style: TextStyle(color: Theme.of(context).primaryColor),
+            ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),

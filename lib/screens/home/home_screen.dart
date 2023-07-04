@@ -49,6 +49,8 @@ class _BodyState extends State<_Body> {
                     const _SearchButton(),
                     SizedBox(width: 10.w),
                     const _FavoriteButton(),
+                    SizedBox(width: 10.w),
+                    const _LogoutButton(),
                   ],
                 ),
               ],
@@ -56,6 +58,27 @@ class _BodyState extends State<_Body> {
           ),
           isLoading ? const _LoadingGrid() : const _Photos(),
         ],
+      ),
+    );
+  }
+}
+
+class _LogoutButton extends StatelessWidget {
+  const _LogoutButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(top: 19.h),
+      child: InkWell(
+        onTap: () => context
+            .read<HomeViewModel>()
+            .logoutAction(),
+        child: Icon(
+          Icons.logout,
+          size: 30.sp,
+          color: Colors.red,
+        ),
       ),
     );
   }

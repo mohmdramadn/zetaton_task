@@ -13,6 +13,7 @@ class Constant {
   static Fonts fonts = const Fonts();
   static Pexels pexels = const Pexels();
   static FirebaseQuery firebaseQueryParam = const FirebaseQuery();
+  static SharedPrefsKeys sharedPrefKeys = const SharedPrefsKeys();
 }
 
 class Titles{
@@ -43,6 +44,9 @@ class Titles{
    String get error => 'Something happened try again later';
    String get haveAccount => 'Do you have an account ? ';
    String get doesNotHaveAccount => 'Do not have an account ? ';
+   String get sureLogout => 'Are you sure you want to logout ?';
+   String get logout => 'Logout';
+   String get cancel => 'Cancel';
 }
 
 class PhoneValidationStatus{
@@ -98,4 +102,7 @@ class FirebaseQuery {
   String get fullName => 'Full name';
 }
 
-class SharedPrefsKeys{}
+class SharedPrefsKeys{
+  const SharedPrefsKeys();
+  String get user => 'user';
+}
