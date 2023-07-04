@@ -34,8 +34,14 @@ class Titles{
    String get registerSubHeader => 'Enter your data to create a new account';
    String get loginSubHeader => 'To have access to wonderful wallpapers';
    String get notConnected => 'You are offline';
+   String get couldNotDownload => 'Could not download from internet';
    String get firstNameEmpty => 'First name can not be empty';
    String get lastNameEmpty => 'Last name can not be empty';
+   String get savedToGallery => 'Image saved to gallery';
+   String get fetchingImageSrc => 'Fetching image source....';
+   String get error => 'Something happened try again later';
+   String get haveAccount => 'Do you have an account ? ';
+   String get doesNotHaveAccount => 'Do not have an account ? ';
 }
 
 class PhoneValidationStatus{

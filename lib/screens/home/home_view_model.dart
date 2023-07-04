@@ -2,12 +2,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
 import 'package:zetaton_task/constants/constant_strings.dart';
 import 'package:zetaton_task/contract/remote/i_home_repository.dart';
 import 'package:zetaton_task/contract/services/i_connection_service.dart';
 import 'package:zetaton_task/contract/services/i_message_service.dart';
 import 'package:zetaton_task/models/photos.dart';
+import 'package:zetaton_task/routes/routes_names.dart';
 
 @injectable
 class HomeViewModel extends ChangeNotifier{
@@ -20,6 +22,16 @@ class HomeViewModel extends ChangeNotifier{
     required this.connectionService,
     required this.messageService,
   });
+
+  bool _isLoading = true;
+  bool get isLoading => _isLoading;
+  void setLoadingState(value) {
+    _isLoading = value;
+    notifyListeners();
+  }
+
+  List<Photos> _photos = [];
+  List<Photos> get photos => _photos;
 
   Future<void> getPhotos()async{
     var isConnected = await connectionService.checkConnection();
@@ -36,7 +48,7 @@ class HomeViewModel extends ChangeNotifier{
       );
       return;
     }
-    var photosResponse = await homeRepository.getPhotos(numberOfPhotos: 10);
+    var photosResponse = await homeRepository.getPhotos(numberOfPhotos: 40);
     if (photosResponse.isError) {
       setLoadingState(false);
       messageService.showErrorSnackBar(
@@ -50,14 +62,7 @@ class HomeViewModel extends ChangeNotifier{
     notifyListeners();
   }
 
-  List<Photos> _photos = [];
-  List<Photos> get photos => _photos;
-
-  bool _isLoading = true;
-  bool get isLoading => _isLoading;
-  void setLoadingState(value) {
-    _isLoading = value;
-    notifyListeners();
+  void navigateToDetailsScreenAction(Photos photo){
+    Get.toNamed(Routes.photoDetailsRoute, arguments: photo);
   }
-
 }

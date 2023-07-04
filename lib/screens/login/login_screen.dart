@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -13,8 +14,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<LoginViewModel>.value(
-        value: getIt<LoginViewModel>(),
-        child: const _Body());
+        value: getIt<LoginViewModel>(), child: const _Body());
   }
 }
 
@@ -36,10 +36,36 @@ class _Body extends StatelessWidget {
                 const _SubHeader(),
                 const _UserDetailsFields(),
                 SizedBox(height: 16.0.h),
-                const _LoginButton()
+                const _LoginButton(),
+                const _Register(),
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _Register extends StatelessWidget {
+  const _Register();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text.rich(
+        TextSpan(
+          children: [
+            TextSpan(text: Constant.titles.doesNotHaveAccount),
+            TextSpan(
+              text: Constant.titles.register,
+              style: TextStyle(fontFamily: Constant.fonts.nexaBold),
+              recognizer: TapGestureRecognizer()
+                ..onTap =
+                    () => context.read<LoginViewModel>().navigateToRegister(),
+            ),
+          ],
         ),
       ),
     );

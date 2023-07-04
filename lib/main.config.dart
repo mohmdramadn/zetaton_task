@@ -12,14 +12,18 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import 'contract/remote/i_home_repository.dart' as _i13;
+import 'contract/remote/i_details_repository.dart' as _i13;
+import 'contract/remote/i_home_repository.dart' as _i15;
 import 'contract/services/i_connection_service.dart' as _i3;
 import 'contract/services/i_firebase_service.dart' as _i5;
 import 'contract/services/i_message_service.dart' as _i7;
 import 'contract/services/i_request_service.dart' as _i9;
-import 'repositories/home_repository.dart' as _i14;
-import 'screens/home/home_view_model.dart' as _i15;
+import 'models/photos.dart' as _i18;
+import 'repositories/details_repository.dart' as _i14;
+import 'repositories/home_repository.dart' as _i16;
+import 'screens/home/home_view_model.dart' as _i19;
 import 'screens/login/login_view_model.dart' as _i11;
+import 'screens/photo_details/photo_details_view_model.dart' as _i17;
 import 'screens/register/register_view_model.dart' as _i12;
 import 'services/connection_service.dart' as _i4;
 import 'services/firebase_service.dart' as _i6;
@@ -53,10 +57,20 @@ _i1.GetIt $initGetIt(
         firebaseService: gh<_i5.IFirebaseService>(),
         messageService: gh<_i7.IMessageService>(),
       ));
-  gh.factory<_i13.IHomeRepository>(
-      () => _i14.HomeRepository(requestService: gh<_i9.IRequestService>()));
-  gh.factory<_i15.HomeViewModel>(() => _i15.HomeViewModel(
-        homeRepository: gh<_i13.IHomeRepository>(),
+  gh.factory<_i13.IDetailsRepository>(
+      () => _i14.DetailsRepository(requestService: gh<_i9.IRequestService>()));
+  gh.factory<_i15.IHomeRepository>(
+      () => _i16.HomeRepository(requestService: gh<_i9.IRequestService>()));
+  gh.factory<_i17.PhotoDetailsViewModel>(() => _i17.PhotoDetailsViewModel(
+        connectionService: gh<_i3.IConnectionService>(),
+        messageService: gh<_i7.IMessageService>(),
+        firebaseService: gh<_i5.IFirebaseService>(),
+        requestService: gh<_i9.IRequestService>(),
+        detailsRepository: gh<_i13.IDetailsRepository>(),
+        photo: gh<_i18.Photos>(),
+      ));
+  gh.factory<_i19.HomeViewModel>(() => _i19.HomeViewModel(
+        homeRepository: gh<_i15.IHomeRepository>(),
         connectionService: gh<_i3.IConnectionService>(),
         messageService: gh<_i7.IMessageService>(),
       ));
