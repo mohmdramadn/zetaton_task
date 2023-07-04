@@ -4,7 +4,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:injectable/injectable.dart';
 import 'package:zetaton_task/constants/constant_strings.dart';
-import 'package:zetaton_task/contract/remote/i_details_repository.dart';
 import 'package:zetaton_task/contract/services/i_connection_service.dart';
 import 'package:zetaton_task/contract/services/i_firebase_service.dart';
 import 'package:zetaton_task/contract/services/i_message_service.dart';
@@ -17,7 +16,6 @@ class PhotoDetailsViewModel extends ChangeNotifier {
   final IMessageService messageService;
   final IFirebaseService firebaseService;
   final IRequestService requestService;
-  final IDetailsRepository detailsRepository;
   final Photos photo;
 
   PhotoDetailsViewModel({
@@ -25,7 +23,6 @@ class PhotoDetailsViewModel extends ChangeNotifier {
     required this.messageService,
     required this.firebaseService,
     required this.requestService,
-    required this.detailsRepository,
     required this.photo,
   });
 
@@ -52,7 +49,7 @@ class PhotoDetailsViewModel extends ChangeNotifier {
       );
       return;
     }
-    _photos.add(photo.url!);
+    _photos.add(photo.src!.large!);
 
     var favResponse =
         await firebaseService.updateFavoritesAsync(photos: _photos);

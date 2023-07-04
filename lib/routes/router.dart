@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zetaton_task/models/photos.dart';
 import 'package:zetaton_task/routes/routes_names.dart';
+import 'package:zetaton_task/screens/favorites/favorites_screen.dart';
 import 'package:zetaton_task/screens/home/home_screen.dart';
 import 'package:zetaton_task/screens/login/login_screen.dart';
 import 'package:zetaton_task/screens/photo_details/photo_details_screen.dart';
@@ -26,6 +27,10 @@ Route onGenerateRoute(RouteSettings settings) {
         builder: (context) => PhotoDetailsScreen(photo: photo),
         settings: settings,
       );
+
+    case Routes.favoritesRoute:
+      return MaterialPageRoute(
+          builder: (context) => const FavoritesScreen(), settings: settings);
 
     default:
       return MaterialPageRoute(builder: (context) => const RegisterScreen());

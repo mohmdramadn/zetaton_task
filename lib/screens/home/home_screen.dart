@@ -26,7 +26,7 @@ class _Body extends StatefulWidget {
 class _BodyState extends State<_Body> {
   @override
   void initState() {
-    Future.microtask(() => context.read<HomeViewModel>().getPhotos());
+    Future.microtask(() => context.read<HomeViewModel>().initialGetAllPhotos());
     super.initState();
   }
 
@@ -44,15 +44,56 @@ class _BodyState extends State<_Body> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const _Header(),
-                Padding(
-                  padding: EdgeInsets.only(top: 19.h),
-                  child: Icon(Icons.search, size: 30.sp),
+                Row(
+                  children: [
+                    const _SearchButton(),
+                    SizedBox(width: 10.w),
+                    const _FavoriteButton(),
+                  ],
                 ),
               ],
             ),
           ),
           isLoading ? const _LoadingGrid() : const _Photos(),
         ],
+      ),
+    );
+  }
+}
+
+class _SearchButton extends StatelessWidget {
+  const _SearchButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(top: 19.h),
+      child: InkWell(
+        onTap: () {},
+        child: Icon(
+          Icons.search,
+          size: 30.sp,
+        ),
+      ),
+    );
+  }
+}
+
+class _FavoriteButton extends StatelessWidget {
+  const _FavoriteButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(top: 19.h),
+      child: InkWell(
+        onTap: () => context
+            .read<HomeViewModel>()
+            .navigateToFavoritesScreenAction(),
+        child: Icon(
+          Icons.favorite,
+          size: 30.sp,
+        ),
       ),
     );
   }

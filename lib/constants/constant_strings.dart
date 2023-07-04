@@ -12,6 +12,7 @@ class Constant {
       const EmailValidationStatus();
   static Fonts fonts = const Fonts();
   static Pexels pexels = const Pexels();
+  static FirebaseQuery firebaseQueryParam = const FirebaseQuery();
 }
 
 class Titles{
@@ -53,7 +54,7 @@ class PhoneValidationStatus{
 
 class PasswordValidationStatus {
   const PasswordValidationStatus();
-  String get isEmpty => 'Please enter your phone number';
+  String get isEmpty => 'Please enter your password';
   String get isValid => 'Valid';
 }
 
@@ -87,4 +88,14 @@ class Pexels{
   const Pexels();
   String get key => 'hCdsfNYxJ0lrMWVd9MYMrIkXleNOdd0KLAX0C3LGAmEbUs2JCVql5vTP';
 }
+
+class FirebaseQuery {
+  const FirebaseQuery();
+
+  String get users => 'users';
+  String get uid => 'uid';
+  String get favorites => 'Favorites';
+  String get fullName => 'Full name';
+}
+
 class SharedPrefsKeys{}

@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
         title: 'Wallpaper Gallery',
         theme: appThemeData,
         onGenerateRoute: onGenerateRoute,
-        initialRoute: Routes.registerRoute,
+        initialRoute: Routes.loginRoute,
         opaqueRoute: Get.isOpaqueRouteDefault,
         color: Colors.white,
       )

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:zetaton_task/contract/remote/i_details_repository.dart';
 import 'package:zetaton_task/contract/services/i_connection_service.dart';
 import 'package:zetaton_task/contract/services/i_firebase_service.dart';
 import 'package:zetaton_task/contract/services/i_message_service.dart';
@@ -22,7 +21,6 @@ class PhotoDetailsScreen extends StatelessWidget {
               messageService: getIt<IMessageService>(),
               firebaseService: getIt<IFirebaseService>(),
               requestService: getIt<IRequestService>(),
-              detailsRepository: getIt<IDetailsRepository>(),
               photo: photo,
             ),
         child: const _Body());
