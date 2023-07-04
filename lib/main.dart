@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:zetaton_task/firebase_options.dart';
+import 'package:zetaton_task/helper/shared_pref.dart';
 import 'package:zetaton_task/main.config.dart';
 import 'package:zetaton_task/routes/router.dart';
 import 'package:zetaton_task/routes/routes_names.dart';
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
         title: 'Wallpaper Gallery',
         theme: appThemeData,
         onGenerateRoute: onGenerateRoute,
-        initialRoute: Routes.loginRoute,
+        initialRoute: Routes.splashRoute,
         opaqueRoute: Get.isOpaqueRouteDefault,
         color: Colors.white,
       )
